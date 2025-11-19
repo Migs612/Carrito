@@ -17,7 +17,10 @@
                                 </div>
                             </div>
                             <div class="md:w-1/2">
-                                <img src="assets/products/hero.jpg" alt="Hero" class="w-full h-64 object-cover">
+                                <picture>
+                                    <source srcset="assets/products/hero.webp" type="image/webp">
+                                    <img src="assets/products/hero.jpg" alt="Hero" class="w-full h-64 object-cover" loading="lazy">
+                                </picture>
                             </div>
                         </div>
                     </li>
@@ -48,7 +51,11 @@
                         <li class="glide__slide">
                             <div class="w-[220px] product-card relative p-4 bg-white rounded-lg">
                                 <div class="relative">
-                                     <img src="assets/products/<?php echo $p['img']; ?>" alt="<?php echo htmlspecialchars($p['name']); ?>" class="w-full h-40 object-cover rounded-md">
+                                     <?php $imgBase = pathinfo($p['img'], PATHINFO_FILENAME); ?>
+                                     <picture>
+                                         <source srcset="assets/products/<?php echo $imgBase; ?>_thumb.webp" type="image/webp">
+                                         <img src="assets/products/<?php echo $p['img']; ?>" alt="<?php echo htmlspecialchars($p['name']); ?>" class="w-full h-40 object-cover rounded-md" loading="lazy">
+                                     </picture>
                                      <div class="badge absolute top-3 right-3">★</div>
                                 </div>
                                 <h3 class="mt-3 text-sm font-semibold"><?php echo htmlspecialchars($p['name']); ?></h3>
