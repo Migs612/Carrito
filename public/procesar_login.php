@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre_usuario = $_POST['nombre_usuario'];
     $contrasena = $_POST['contrasena'];
 
-    // Buscar usuario en la base de datos
     $stmt = $db->prepare("SELECT id_usuario, contrasena FROM Usuarios WHERE nombre_usuario = ?");
     $stmt->bind_param("s", $nombre_usuario);
     $stmt->execute();
@@ -16,12 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_result($id_usuario, $hash_contrasena);
         $stmt->fetch();
 
-        // Verificar la contraseña (asumiendo que está hasheada)
-        if (password_verify($contrasena, $hash_contrasena)) {
-            // Iniciar sesión
+        if ($contrasena === $hash_contrasena) {
             $_SESSION['id_usuario'] = $id_usuario;
             $_SESSION['nombre_usuario'] = $nombre_usuario;
-            header("Location: index.php"); // Redirigir al área privada
+            header("Location: index.php");
             exit();
         } else {
             echo "Contraseña incorrecta.";

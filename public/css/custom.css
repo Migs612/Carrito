@@ -1,0 +1,16 @@
+/* Custom overrides for Tailwind prototype */
+:root{
+  --color-primary: #0F4C81;
+  --color-accent: #2F77B7;
+}
+body{font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+.product-card{border-radius: 12px; border:1px solid rgba(47,119,183,.08); box-shadow:0 6px 12px rgba(31,41,51,.04);}
+.product-card .badge{width:36px;height:36px;border-radius:50%;background:var(--color-accent);display:flex;align-items:center;justify-content:center;color:#fff;}
+/* horizontal scrollbar nicer on webkit */
+.flex::-webkit-scrollbar{height:8px}
+.flex::-webkit-scrollbar-thumb{background:rgba(15,76,129,.2);border-radius:9999px}
+
+/* Small responsive tweaks */
+@media (min-width: 768px){
+  .product-card img{height:160px}
+}
